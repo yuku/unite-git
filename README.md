@@ -1,5 +1,29 @@
 #unite-git
 
+##git_cached
+
+This source gathers cached files from current git repository.
+
+```
+:Unite git_cached
+```
+
+##git_modified
+
+This source gathers modified files from current git repository.
+
+```
+:Unite git_modified
+```
+
+##git_untracked
+
+This source gathers untracked files from current git repository.
+
+```
+:Unite git_untracked
+```
+
 #Licence
 
 The MIT License
