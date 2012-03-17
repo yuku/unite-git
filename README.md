@@ -1,5 +1,7 @@
 #unite-git
 
+Unite sources which gather candidates from your git repository.
+
 ##git_cached
 
 This source gathers cached files from current git repository.
