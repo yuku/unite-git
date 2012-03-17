@@ -3,6 +3,7 @@
 ##git_cached
 
 This source gathers cached files from current git repository.
+It invokes `git ls-files` to gather files.
 
 ```
 :Unite git_cached
@@ -11,6 +12,7 @@ This source gathers cached files from current git repository.
 ##git_modified
 
 This source gathers modified files from current git repository.
+It invokes `git ls-files --modified` to gather files.
 
 ```
 :Unite git_modified
@@ -19,6 +21,7 @@ This source gathers modified files from current git repository.
 ##git_untracked
 
 This source gathers untracked files from current git repository.
+It invokes `git ls-files --others --exclude-standard` to gather files.
 
 ```
 :Unite git_untracked
