@@ -29,6 +29,15 @@ It invokes `git ls-files --others --exclude-standard` to gather files.
 :Unite git_untracked
 ```
 
+##git_grep
+
+This source gathers greped files from current git repository.
+It invokes `git grep -l -e KEYWORD` to gather files.
+
+```
+:Unite git_grep:KEYWORD
+```
+
 #Licence
 
 The MIT License
