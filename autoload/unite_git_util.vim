@@ -1,6 +1,6 @@
 "==============================================================================
-" FILE: git_cached.vim
-" AUTHOR: Yuku Takahashi <taka84u9 at gmail.com>
+" FILE: unite_git_util.vim
+" AUTHOR: Yuya -presto- Tanaka <yuya.tanaka.i at gmail.com>
 " Last Modified: 28 Oct 2012
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
@@ -24,32 +24,20 @@
 " }}}
 "==============================================================================
 
-let s:source = {
-            \ 'name'        : 'git_cached',
-            \ 'hooks'       : {},
-            \ }
+let s:GITI_KIND = 'giti/status'
+let s:giti_availability = -1
 
-function! s:source.gather_candidates(args, context)
-    let kind = unite_git_util#get_kind()
-    let result = unite#util#system('git ls-files')
-    if unite#util#get_last_status() == 0
-        let paths = split(result, '\r\n\|\r\|\n')
-        let candidates = []
-        for path in paths
-            let dict = {
-                        \ 'word'         : path,
-                        \ 'kind'         : kind,
-                        \ 'action__path' : path,
-                        \ }
-            call add(candidates, dict)
-        endfor
-        return candidates
-    else
-        call unite#util#print_error('Not a Git repository.')
-        return []
+function! s:is_giti_available()
+    if s:giti_availability < 0
+        let s:giti_availability = !empty(unite#get_kinds(s:GITI_KIND))
     endif
+    return s:giti_availability
 endfunction
 
-function! unite#sources#git_cached#define()
-    return s:source
+function! unite_git_util#get_kind()
+    let kind = ['file']
+    if s:is_giti_available()
+        call add(kind, s:GITI_KIND)
+    endif
+    return kind
 endfunction
