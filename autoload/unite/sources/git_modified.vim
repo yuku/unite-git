@@ -1,7 +1,7 @@
 "==============================================================================
 " FILE: git_modified.vim
 " AUTHOR: Yuku Takahashi <taka84u9 at gmail.com>
-" Last Modified: 17 Mar 2012
+" Last Modified: 28 Oct 2012
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -30,6 +30,7 @@ let s:source = {
             \ }
 
 function! s:source.gather_candidates(args, context)
+    let kind = unite_git_util#get_kind()
     let result = unite#util#system('git ls-files --modified')
     if unite#util#get_last_status() == 0
         let paths = split(result, '\r\n\|\r\|\n')
@@ -37,7 +38,7 @@ function! s:source.gather_candidates(args, context)
         for path in paths
             let dict = {
                         \ 'word'         : path,
-                        \ 'kind'         : 'jump_list',
+                        \ 'kind'         : kind,
                         \ 'action__path' : path,
                         \ }
             call add(candidates, dict)
